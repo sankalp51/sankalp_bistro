@@ -1,11 +1,10 @@
-const fetchMeals = async (url) => {
-    const response = await fetch(url);
-    const data = await response.json();
+const sendHttpRequest = async (url, config) => {
+    const response = await fetch(url, config);
+    const resData = await response.json();
     if (!response.ok) {
-        throw new Error('Error fetching meals');
+        throw new Error(resData.message || 'Something went wrong')
     }
-    return data;
-
+    return resData;
 }
 
-export { fetchMeals };
+export { sendHttpRequest };
